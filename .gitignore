@@ -1,0 +1,31 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Dependências e builds (caso o projeto adote ferramentas no futuro)
+node_modules/
+dist/
+build/
+.cache/
+
+# Variáveis de ambiente e logs
+.env
+.env.*
+*.log
+
+# Temporários e backups
+*.tmp
+*.bak
+*.zip
+
+# Originais pesados de design/foto (guarde fora do repositório)
+assets/originals/
+*.psd
+*.ai
+*.fig
