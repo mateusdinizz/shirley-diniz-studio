@@ -63,9 +63,6 @@ Fontes (Google Fonts): **Jost** nos títulos, **Open Sans** no texto e **Cormora
 - `assets/images/espaco-02.jpg`
 - `assets/images/espaco-03.jpg`
 - `assets/images/espaco-04.jpg`
-- `assets/images/hero-01.jpg`
-- `assets/images/hero-02.jpg`
-- `assets/images/hero-03.jpg`
 - `assets/images/shirley-diniz.jpg`
 - `assets/images/textura-fundo.jpg`
 - `assets/images/trabalho-01.jpg`
@@ -87,7 +84,7 @@ Antes de adicionar fotos novas, comprima-as (largura até ~1000px, JPEG com qual
 
 - [ ] Adicionar `og:image` com URL absoluta (depois de publicar), para a prévia do link no WhatsApp.
 - [ ] Conferir se o pin do mapa (seção `#visite`) está na Galeria Centro Sul.
-- [ ] Confirmar com a dona do studio os textos institucionais da seção Shirley Diniz.
+- [ ] Confirmar com a dona do studio a legenda da foto da Shirley no início da página.
 - [ ] Confirmar autorização de uso das fotos das clientes.
 - [ ] Testar o site em celular (iOS e Android) e em desktop.
 
