@@ -36,7 +36,7 @@ python3 -m http.server 8000
 | Quero mudar | Onde |
 |---|---|
 | Textos, seções e ordem | `index.html` |
-| Preços e serviços (cartões) | `index.html`, seção `#servicos` |
+| Serviços (categorias e itens) | `index.html`, seção `#servicos` |
 | Número do WhatsApp | `index.html`: procure por `wa.me/` (aparece em vários botões e no endereço da seção `#visite`) |
 | Depoimentos e links do Google | `index.html`, seção `#avaliacoes` |
 | Cores e fontes | `css/style.css`, bloco `:root` |
