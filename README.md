@@ -63,6 +63,8 @@ Fontes (Google Fonts): **Jost** nos títulos, **Open Sans** no texto e **Cormora
 - `assets/images/espaco-02.jpg`
 - `assets/images/espaco-03.jpg`
 - `assets/images/espaco-04.jpg`
+- `assets/images/espaco-05.jpg`
+- `assets/images/espaco-06.jpg`
 - `assets/images/shirley-diniz.jpg`
 - `assets/images/textura-fundo.jpg`
 - `assets/images/trabalho-01.jpg`

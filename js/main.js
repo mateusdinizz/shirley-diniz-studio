@@ -1,6 +1,6 @@
 /* ===== Carrossel do Instagram ===== */
 (function () {
-  var root = document.getElementById('ig-carousel'); if (!root) return;
+  document.querySelectorAll('.ig-carousel').forEach(function (root) {
   var track = root.querySelector('.ig-track'), dots = root.querySelectorAll('.ig-dot'), n = dots.length, cur = 0, t = null, x0 = null;
   var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function go(i) {
@@ -17,6 +17,7 @@
   root.addEventListener('touchend', function (e) {
     if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
     if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); play();
+  });
   });
 })();
 
@@ -41,7 +42,7 @@
   }
   if (rm || !('IntersectionObserver' in window)) return;
   document.querySelectorAll('.svc-icon *').forEach(function (n) { n.setAttribute('pathLength', '1'); });
-  var groups = ['.hero-copy > *', '.hero-owner', 'section > .section-title', 'section > .sub', '.ig-layout', '.space-grid img', '.svc-cat', 'blockquote', '.svc-cta', '.visit'];
+  var groups = ['.hero-copy > *', '.hero-owner', 'section > .section-title', 'section > .sub', '.ig-layout', '.svc-cat', 'blockquote', '.svc-cta', '.visit'];
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) {
       if (!e.isIntersecting) return;
