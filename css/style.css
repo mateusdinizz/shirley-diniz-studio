@@ -19,6 +19,7 @@ body {
   background-image: var(--tex);
   background-position: center top;
   background-size: 760px auto;
+  background-attachment: fixed;
   color: var(--ink);
   font: 300 17px/1.6 "Open Sans", system-ui, sans-serif;
   overflow-x: hidden;
@@ -383,3 +384,12 @@ blockquote cite a:hover { color: var(--ink); }
 .space-layout { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 40px; align-items: center; }
 .space-layout .ig-viewport { aspect-ratio: 1 / 1; min-height: 420px; max-height: min(760px, calc(100vh - 140px)); }
 @media (max-width: 760px) { .space-layout { grid-template-columns: 1fr; gap: 28px; } .space-layout .ig-viewport { aspect-ratio: 4 / 5; min-height: 0; max-height: none; } }
+
+/* ===== v20: profundidade no início (elementos soltos, sem caixas) ===== */
+.hero-logo { filter: drop-shadow(0 6px 9px rgba(26,26,26,.22)) drop-shadow(0 1px 2px rgba(26,26,26,.16)); }
+.hero-tag { text-shadow: 0 3px 10px rgba(26,26,26,.18); }
+.hero-intro, .owner-name, .owner-role, .owner-note { text-shadow: 0 2px 7px rgba(26,26,26,.14); }
+.hero-owner img { box-shadow: 0 26px 48px -14px rgba(26,26,26,.42), 0 8px 16px rgba(26,26,26,.16); }
+.hero .btn { box-shadow: 0 12px 22px -8px rgba(26,26,26,.36), 0 3px 8px rgba(26,26,26,.14); transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.hero .btn:hover { box-shadow: 0 16px 26px -8px rgba(26,26,26,.40), 0 4px 10px rgba(26,26,26,.16); }
+@media (prefers-reduced-motion: reduce) { body { background-attachment: scroll; } }
