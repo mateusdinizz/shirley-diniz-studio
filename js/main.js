@@ -1,23 +1,45 @@
-/* ===== Carrossel do Instagram ===== */
+/* ===== Carrosséis (Nosso trabalho e Nosso espaço) ===== */
 (function () {
-  document.querySelectorAll('.ig-carousel').forEach(function (root) {
-  var track = root.querySelector('.ig-track'), dots = root.querySelectorAll('.ig-dot'), n = dots.length, cur = 0, t = null, x0 = null;
   var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function go(i) {
-    cur = (i + n) % n; track.style.transform = 'translateX(' + (-100 * cur) + '%)';
-    dots.forEach(function (d, k) { d.classList.toggle('is-active', k === cur); d.setAttribute('aria-current', k === cur ? 'true' : 'false'); });
-  }
-  function stop() { clearInterval(t); t = null; }
-  function play() { if (rm || t) return; t = setInterval(function () { go(cur + 1); }, 4500); }
-  play();
-  dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
-  root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', play);
-  root.addEventListener('focusin', stop); root.addEventListener('focusout', play);
-  root.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
-  root.addEventListener('touchend', function (e) {
-    if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
-    if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); play();
+  document.querySelectorAll('.ig-carousel').forEach(function (root) {
+    var track = root.querySelector('.ig-track'), dots = root.querySelectorAll('.ig-dot'), btn = root.querySelector('.ig-pause');
+    var n = dots.length, cur = 0, t = null, x0 = null, userPaused = false;
+    function go(i) {
+      cur = (i + n) % n; track.style.transform = 'translateX(' + (-100 * cur) + '%)';
+      dots.forEach(function (d, k) { d.classList.toggle('is-active', k === cur); d.setAttribute('aria-current', k === cur ? 'true' : 'false'); });
+    }
+    function stop() { clearInterval(t); t = null; }
+    function play() { if (rm || userPaused || t) return; t = setInterval(function () { go(cur + 1); }, 4500); }
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); }); });
+    if (btn) {
+      if (rm) { btn.hidden = true; }
+      else btn.addEventListener('click', function () {
+        userPaused = !userPaused;
+        btn.setAttribute('aria-pressed', String(userPaused));
+        btn.setAttribute('aria-label', userPaused ? 'Retomar rotação' : 'Pausar rotação');
+        if (userPaused) stop(); else play();
+      });
+    }
+    play();
+    root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', play);
+    root.addEventListener('focusin', stop); root.addEventListener('focusout', play);
+    root.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+    root.addEventListener('touchend', function (e) {
+      if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1)); play();
+    });
   });
+})();
+
+/* ===== Mapa carregado só ao clique ===== */
+(function () {
+  var box = document.querySelector('.map[data-map-src]'); if (!box) return;
+  var btn = box.querySelector('.map-load'); if (!btn) return;
+  btn.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.title = box.getAttribute('data-map-title'); f.src = box.getAttribute('data-map-src');
+    f.loading = 'lazy'; f.referrerPolicy = 'no-referrer-when-downgrade'; f.allowFullscreen = true;
+    box.replaceChildren(f);
   });
 })();
 
