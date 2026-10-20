@@ -7,6 +7,7 @@ Landing page do **Shirley Diniz Studio**, salão de beleza em Boa Viagem, Recife
 ```
 shirley-diniz-studio/
 ├── index.html
+├── privacidade.html
 ├── robots.txt
 ├── sitemap.xml
 ├── css/style.css
@@ -39,6 +40,8 @@ python3 -m http.server 8000
 | Horário, endereço e dados para o Google | `index.html` (seção `#visite`) e o bloco `application/ld+json` no `<head>` |
 | Cores e fontes | `css/style.css` (bloco `:root` e `@font-face`) |
 | Velocidade dos carrosséis | `js/main.js`, função `play()` |
+| Política de privacidade | `privacidade.html` (campos entre colchetes em destaque) |
+| Perguntas frequentes | `index.html`, seção `#faq` (e o bloco `FAQPage` no `<head>`, que deve ter o mesmo texto) |
 | Fotos | `assets/images/` |
 
 ## Identidade visual
@@ -96,14 +99,14 @@ Confira o tamanho (`ls -l`) e reduza a qualidade até ficar abaixo de 300 KB. Gu
 
 ## Pendências
 
-- [ ] Trocar o placeholder `https://SEU-DOMINIO.com.br` pelo domínio real nestes pontos: `index.html:14`, `index.html:19`, `index.html:21`, `index.html:29`, `index.html:39`, `index.html:40`, `robots.txt:4`, `sitemap.xml:4`.
+- [ ] Trocar o placeholder `https://SEU-DOMINIO.com.br` pelo domínio real nestes pontos: `index.html:14`, `index.html:19`, `index.html:21`, `index.html:29`, `index.html:39`, `index.html:40`, `privacidade.html:17`, `robots.txt:4`, `sitemap.xml:4`, `sitemap.xml:7`.
 - [ ] Publicar com domínio próprio e HTTPS forçado, e confirmar o certificado válido.
 - [ ] Depois de publicar, testar a prévia do link no WhatsApp e validar o JSON-LD no Teste de Resultados Rich do Google.
 - [ ] Rodar PageSpeed Insights e testar em celulares e tablets reais.
 - [ ] Reescrever os textos genéricos de "Nosso trabalho", "Nosso espaço" e da legenda da Shirley com fatos reais, e comprovar a frase "mais de 20 anos".
-- [ ] Escrever a política de privacidade (depende dos dados do responsável); hoje não há coleta de dados nem requisições de terceiros no carregamento.
-- [ ] Criar FAQ e uma descrição curta por serviço.
-- [ ] Confirmar a autorização de uso das fotos das clientes.
+- [ ] Preencher os campos em destaque entre colchetes de `privacidade.html` (razão social ou nome, CNPJ ou CPF) e pedir a revisão de um advogado ou contador antes de publicar. Confirme também que a frase "Não vendemos seus dados" e o prazo de guarda descrevem a prática real do Studio.
+- [x] FAQ criado (seção `#faq`, com dados estruturados `FAQPage`). Uma descrição curta por serviço continua opcional.
+- [x] Autorização de uso das fotos das clientes confirmada pela dona. Guarde o registro (mensagem ou termo) e retire a foto se alguém pedir.
 - [ ] Conferir o pin do mapa e o horário "terça a sábado, das 7h30 às 19h".
 
 ## Créditos

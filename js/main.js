@@ -64,7 +64,7 @@
   }
   if (rm || !('IntersectionObserver' in window)) return;
   document.querySelectorAll('.svc-icon *').forEach(function (n) { n.setAttribute('pathLength', '1'); });
-  var groups = ['.hero-copy > *', '.hero-owner', 'section > .section-title', 'section > .sub', '.ig-layout', '.svc-cat', 'blockquote', '.svc-cta', '.visit'];
+  var groups = ['.hero-copy > *', '.hero-owner', 'section > .section-title', 'section > .sub', '.ig-layout', '.svc-cat', 'blockquote', '.svc-cta', '.visit', '.faq'];
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) {
       if (!e.isIntersecting) return;
