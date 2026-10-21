@@ -39,7 +39,7 @@ python3 -m http.server 8000
 | Depoimentos e links do Google | `index.html`, seção `#avaliacoes` |
 | Horário, endereço e dados para o Google | `index.html` (seção `#visite`) e o bloco `application/ld+json` no `<head>` |
 | Cores e fontes | `css/style.css` (bloco `:root` e `@font-face`) |
-| Velocidade dos carrosséis | `js/main.js`, função `play()` |
+| Velocidade do carrossel de "Nosso espaço" | `js/main.js`, função `play()` |
 | Política de privacidade | `privacidade.html` (campos entre colchetes em destaque) |
 | Perguntas frequentes | `index.html`, seção `#faq` (e o bloco `FAQPage` no `<head>`, que deve ter o mesmo texto) |
 | Fotos | `assets/images/` |
@@ -66,6 +66,12 @@ Fontes (auto-hospedadas, licença OFL): **Jost** nos títulos, **Open Sans** no 
 - `assets/images/espaco-04.webp`
 - `assets/images/espaco-05.webp`
 - `assets/images/espaco-06.webp`
+- `assets/images/shirley-01.webp`
+- `assets/images/shirley-02.webp`
+- `assets/images/shirley-03.webp`
+- `assets/images/shirley-04.webp`
+- `assets/images/shirley-05.webp`
+- `assets/images/shirley-06.webp`
 - `assets/images/og-image.jpg`
 - `assets/images/shirley-diniz.webp`
 - `assets/images/textura-fundo.webp`
@@ -73,6 +79,8 @@ Fontes (auto-hospedadas, licença OFL): **Jost** nos títulos, **Open Sans** no 
 - `assets/images/trabalho-02.webp`
 - `assets/images/trabalho-03.webp`
 - `assets/images/trabalho-04.webp`
+- `assets/images/trabalho-05.webp`
+- `assets/images/trabalho-06.webp`
 
 **Regras:** formato WebP, no máximo 300 KB por imagem (exceto `og-image.jpg`, que fica em JPEG por compatibilidade com WhatsApp e redes sociais). Fotos de "Nosso espaço" já estão recortadas em 4:5.
 
@@ -103,7 +111,7 @@ Confira o tamanho (`ls -l`) e reduza a qualidade até ficar abaixo de 300 KB. Gu
 - [ ] Publicar com domínio próprio e HTTPS forçado, e confirmar o certificado válido.
 - [ ] Depois de publicar, testar a prévia do link no WhatsApp e validar o JSON-LD no Teste de Resultados Rich do Google.
 - [ ] Rodar PageSpeed Insights e testar em celulares e tablets reais.
-- [ ] Reescrever os textos genéricos de "Nosso trabalho", "Nosso espaço" e da legenda da Shirley com fatos reais, e comprovar a frase "mais de 20 anos".
+- [x] Reescrever os textos genéricos de "Nosso trabalho", "Nosso espaço" e da legenda da Shirley com fatos reais, e comprovar a frase "mais de 20 anos".
 - [ ] Preencher os campos em destaque entre colchetes de `privacidade.html` (razão social ou nome, CNPJ ou CPF) e pedir a revisão de um advogado ou contador antes de publicar. Confirme também que a frase "Não vendemos seus dados" e o prazo de guarda descrevem a prática real do Studio.
 - [x] FAQ criado (seção `#faq`, com dados estruturados `FAQPage`). Uma descrição curta por serviço continua opcional.
 - [x] Autorização de uso das fotos das clientes confirmada pela dona. Guarde o registro (mensagem ou termo) e retire a foto se alguém pedir.
