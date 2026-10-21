@@ -1,122 +1,143 @@
-# Shirley Diniz Studio
+# Shirley Diniz Studio — Landing page
 
-Landing page do **Shirley Diniz Studio**, salão de beleza em Boa Viagem, Recife (PE). Site estático em HTML, CSS e JavaScript puros, sem dependências nem etapa de build. O objetivo é levar a cliente ao agendamento pelo WhatsApp: mostrar o trabalho, o espaço, os serviços, as avaliações e a localização.
+Site institucional de um salão de beleza em Boa Viagem, Recife (PE), com o objetivo de converter visitas em agendamentos pelo WhatsApp. Projeto real, em produção para um cliente.
 
-## Estrutura
+**Site:** https://shirleydinizstudio.com.br
+
+![HTML5](https://img.shields.io/badge/HTML5-semântico-e34f26) ![CSS3](https://img.shields.io/badge/CSS3-custom%20properties%20%2B%20grid-1572b6) ![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-f7df1e) ![Build](https://img.shields.io/badge/build-nenhum-lightgrey) ![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-222)
+
+## Resumo técnico
+
+| | |
+|---|---|
+| **Stack** | HTML5, CSS3 e JavaScript puros. Sem framework, sem bundler, sem dependências de runtime |
+| **Hospedagem** | GitHub Pages, domínio próprio (`.com.br`) com DNS no Registro.br (registros A + CNAME) e HTTPS forçado |
+| **Meta de produto** | Levar o visitante ao WhatsApp com poucos cliques, principalmente no celular |
+| **Foco técnico** | Performance, acessibilidade, SEO local, privacidade (LGPD) e manutenção simples por uma pessoa só |
+
+## Decisões de projeto
+
+**Site estático sem build.** O conteúdo muda pouco e quem mantém o site precisa conseguir editar um arquivo e publicar. Evitar framework e bundler remove toda a cadeia de dependências, deixa o deploy em um `git push` e mantém o carregamento leve.
+
+**Fontes auto-hospedadas (woff2).** Open Sans, Jost e Cormorant Garamond ficam em `assets/fonts/`, em subconjuntos `latin` e `latin-ext`. Isso elimina a requisição a servidores de fontes de terceiros (privacidade e desempenho) e permite `preload` apenas das duas fontes usadas na primeira dobra.
+
+**Imagens em WebP com limite de peso.** Todas as fotos são convertidas para WebP com teto de 300 KB; as miniaturas da galeria são recortadas em 3:4 (480×640) e ficam em dezenas de KB. Atributos `width` e `height` explícitos evitam deslocamento de layout (CLS), e `loading="lazy"` com `decoding="async"` adia o que está fora da tela. A imagem de prévia de links (`og-image.jpg`, 1200×630) fica em JPEG por compatibilidade com WhatsApp e redes sociais.
+
+**Mapa sob demanda.** O iframe do Google Maps só é criado quando a seção se aproxima da tela (`IntersectionObserver` com margem de 400 px). Quem não chega ao fim da página não faz nenhuma requisição ao Google, e o carregamento inicial fica sem terceiros. Existe fallback com link para o Google Maps, e a política de privacidade descreve esse comportamento.
+
+**Design tokens em CSS.** Cores vivem em custom properties no `:root`, o que mantém a paleta consistente e a troca de tema em um único lugar.
+
+| Token | Valor | Uso |
+|---|---|---|
+| `--bg` | `#e1d9de` | Fundo |
+| `--panel` | `#ece5e9` | Painéis |
+| `--ink` | `#1a1a1a` | Texto |
+| `--muted` | `#5f555b` | Texto secundário |
+| `--bar` | `#b697aa` | Destaques e botões |
+| `--bar-ink` | `#1f1a1d` | Texto sobre destaque |
+
+**Layout responsivo com CSS Grid.** A galeria de trabalhos usa 6 colunas no desktop, 3 até 1180 px e 2 até 560 px, sempre com proporção 3:4 fixa. Tamanhos de fonte em `rem`, para respeitar a preferência de texto do usuário.
+
+## Funcionalidades
+
+- **Carrosséis** (espaço e fotos da profissional) em JavaScript puro: avanço automático a cada 3 s, botão de pausar, gesto de deslizar no toque e avanço automático desligado quando o usuário tem `prefers-reduced-motion`.
+- **Animação de entrada ao rolar** com `IntersectionObserver` (classe `.rv`), também desligada com movimento reduzido.
+- **Menu com seção ativa** destacada conforme a rolagem e **botão flutuante de WhatsApp**.
+- **Catálogo de serviços** em painéis por categoria, com links diretos para o WhatsApp.
+- **Perguntas frequentes** com `<details>`/`<summary>` nativos.
+- **Página de privacidade** própria (`privacidade.html`).
+
+## Acessibilidade
+
+- HTML semântico com hierarquia de títulos e um `h1` visualmente oculto.
+- Link "Pular para o conteúdo" e foco visível com contraste adequado.
+- Alvos de toque de pelo menos 44 px em telas de toque (`pointer: coarse`).
+- Controle para pausar os carrosséis e respeito a `prefers-reduced-motion`.
+- Links que abrem em nova aba avisam leitores de tela com texto oculto "(abre em nova aba)" e usam `rel="noopener noreferrer"`.
+- Texto alternativo descritivo em todas as fotos.
+
+## SEO e dados estruturados
+
+- `title`, `meta description`, `canonical`, Open Graph e Twitter Card.
+- **JSON-LD** `HairSalon` (endereço, horário, telefone) para SEO local e o Perfil da Empresa no Google.
+- **JSON-LD** `FAQPage`, espelhando o texto exato da seção de perguntas frequentes.
+- `robots.txt` e `sitemap.xml`.
+
+## Privacidade e LGPD
+
+- Nenhuma requisição a terceiros no carregamento inicial: fontes locais, sem analytics e sem cookies de rastreamento.
+- Mapa do Google carregado só quando necessário, com o comportamento descrito na política de privacidade.
+- Fotos de clientes usadas com autorização da proprietária do estabelecimento; os depoimentos apontam para as avaliações públicas originais no Google.
+
+## Estrutura do repositório
 
 ```
 shirley-diniz-studio/
-├── index.html
-├── privacidade.html
+├── index.html            página principal (seções + JSON-LD)
+├── privacidade.html      política de privacidade
 ├── robots.txt
 ├── sitemap.xml
-├── css/style.css
-├── js/main.js
+├── CNAME                 domínio próprio para o GitHub Pages
+├── css/style.css         tokens, layout, componentes e responsividade
+├── js/main.js            carrosséis, mapa sob demanda, reveal e menu ativo
 ├── assets/
-│   ├── images/   fotos em WebP (até 300 KB cada) + og-image.jpg (prévia de links)
-│   ├── icons/    logo, monograma (SVG), favicon.ico, favicon-32.png, apple-touch-icon.png
-│   └── fonts/    fontes auto-hospedadas (woff2): Open Sans, Jost, Cormorant Garamond
+│   ├── images/           fotos em WebP + og-image.jpg
+│   ├── icons/            logo e monograma (SVG), favicons
+│   └── fonts/            woff2 auto-hospedados
 ├── .gitignore
 └── README.md
 ```
 
-Os ícones dos cartões de serviço ficam **inline** no `index.html`, porque usam `currentColor` e a animação de traço.
+Os ícones dos cartões de serviço ficam inline no HTML porque usam `currentColor` e animação de traço.
 
 ## Como rodar localmente
 
 ```bash
+git clone https://github.com/mateusdinizz/shirley-diniz-studio.git
+cd shirley-diniz-studio
 python3 -m http.server 8000
-# acesse http://localhost:8000
+# abra http://localhost:8000
 ```
 
-## Onde editar
+Não há instalação de pacotes nem build.
 
-| Quero mudar | Onde |
-|---|---|
-| Textos, seções e ordem | `index.html` |
-| Serviços (categorias e itens) | `index.html`, seção `#servicos` |
-| Número do WhatsApp | `index.html`: procure por `wa.me/` |
-| Depoimentos e links do Google | `index.html`, seção `#avaliacoes` |
-| Horário, endereço e dados para o Google | `index.html` (seção `#visite`) e o bloco `application/ld+json` no `<head>` |
-| Cores e fontes | `css/style.css` (bloco `:root` e `@font-face`) |
-| Velocidade do carrossel de "Nosso espaço" | `js/main.js`, função `play()` |
-| Política de privacidade | `privacidade.html` (campos entre colchetes em destaque) |
-| Perguntas frequentes | `index.html`, seção `#faq` (e o bloco `FAQPage` no `<head>`, que deve ter o mesmo texto) |
-| Fotos | `assets/images/` |
-
-## Identidade visual
-
-Fontes (auto-hospedadas, licença OFL): **Jost** nos títulos, **Open Sans** no texto e **Cormorant Garamond** itálico no slogan e nas avaliações.
-
-| Variável | Valor |
-|---|---|
-| `--bg` | `#e1d9de` |
-| `--panel` | `#ece5e9` |
-| `--ink` | `#1a1a1a` |
-| `--muted` | `#5f555b` |
-| `--bar` | `#b697aa` |
-| `--bar-ink` | `#1f1a1d` |
-| `--line` | `#1a1a1a` |
-
-## Imagens
-
-- `assets/images/espaco-01.webp`
-- `assets/images/espaco-02.webp`
-- `assets/images/espaco-03.webp`
-- `assets/images/espaco-04.webp`
-- `assets/images/espaco-05.webp`
-- `assets/images/espaco-06.webp`
-- `assets/images/shirley-01.webp`
-- `assets/images/shirley-02.webp`
-- `assets/images/shirley-03.webp`
-- `assets/images/shirley-04.webp`
-- `assets/images/shirley-05.webp`
-- `assets/images/shirley-06.webp`
-- `assets/images/og-image.jpg`
-- `assets/images/shirley-diniz.webp`
-- `assets/images/textura-fundo.webp`
-- `assets/images/trabalho-01.webp`
-- `assets/images/trabalho-02.webp`
-- `assets/images/trabalho-03.webp`
-- `assets/images/trabalho-04.webp`
-- `assets/images/trabalho-05.webp`
-- `assets/images/trabalho-06.webp`
-
-**Regras:** formato WebP, no máximo 300 KB por imagem (exceto `og-image.jpg`, que fica em JPEG por compatibilidade com WhatsApp e redes sociais). Fotos de "Nosso espaço" já estão recortadas em 4:5.
-
-Para converter uma foto nova (Python + Pillow):
+## Fluxo de imagens
 
 ```bash
-python3 -c "from PIL import Image; im=Image.open('foto.jpg').convert('RGB'); im.thumbnail((1300,1625)); im.save('foto.webp','WEBP',quality=88,method=6)"
+python3 -c "from PIL import Image, ImageOps; im=Image.open('foto.jpg').convert('RGB'); \
+ImageOps.fit(im,(480,640),centering=(.5,.35)).save('foto.webp','WEBP',quality=86,method=6)"
 ```
 
-Confira o tamanho (`ls -l`) e reduza a qualidade até ficar abaixo de 300 KB. Guarde os originais em `assets/originals/`, que o `.gitignore` ignora.
+Regras: WebP, máximo de 300 KB por arquivo e recorte na proporção do componente que a usa. Originais ficam em `assets/originals/`, ignorado pelo `.gitignore`.
 
-## SEO e acessibilidade já implementados
+## Deploy
 
-- `h1` (oculto visualmente), `title`, `description`, canonical, Open Graph e Twitter Card.
-- Dados estruturados `HairSalon` (JSON-LD), `robots.txt` e `sitemap.xml`.
-- Link "Pular para o conteúdo", foco visível com contraste, botão de pausar os carrosséis, alvos de toque de 44 px em telas de toque e aviso de "abre em nova aba".
-- Nenhuma requisição a terceiros no carregamento: fontes locais e mapa do Google carrega qunado a seção se aproxima da tela.
+1. GitHub Pages, branch `main`, pasta raiz, com o arquivo `CNAME` na raiz.
+2. DNS no Registro.br: quatro registros `A` (`185.199.108.153` a `185.199.111.153`) para a raiz e um `CNAME` de `www` para `mateusdinizz.github.io`.
+3. **Enforce HTTPS** ativado após a emissão do certificado.
 
-## Publicar no GitHub Pages
+Cada `git push` na `main` publica automaticamente.
 
-1. **Settings → Pages**, *Deploy from a branch*, `main` e `/ (root)`.
-2. Em **Custom domain**, informe o domínio e marque **Enforce HTTPS**.
-3. O GitHub Pages gratuito exige repositório público. As fotos mostram clientes: confirme a autorização de uso antes.
+## Qualidade e verificação
 
-## Pendências
+Durante o desenvolvimento, o HTML foi validado com `html-validate` e o comportamento foi conferido com Chromium headless (Puppeteer) em larguras de 390 a 1920 px: overflow horizontal, quebra do menu, galeria, carrosséis e movimento reduzido. Esses scripts não fazem parte do repositório.
 
-- [ ] Trocar o placeholder `https://SEU-DOMINIO.com.br` pelo domínio real nestes pontos: `index.html:14`, `index.html:19`, `index.html:21`, `index.html:29`, `index.html:39`, `index.html:40`, `privacidade.html:17`, `robots.txt:4`, `sitemap.xml:4`, `sitemap.xml:7`.
-- [ ] Publicar com domínio próprio e HTTPS forçado, e confirmar o certificado válido.
-- [ ] Depois de publicar, testar a prévia do link no WhatsApp e validar o JSON-LD no Teste de Resultados Rich do Google.
-- [ ] Rodar PageSpeed Insights e testar em celulares e tablets reais.
-- [x] Reescrever os textos genéricos de "Nosso trabalho", "Nosso espaço" e da legenda da Shirley com fatos reais, e comprovar a frase "mais de 20 anos".
-- [x] Preencher os campos em destaque entre colchetes de `privacidade.html` (razão social ou nome, CNPJ ou CPF) e pedir a revisão de um advogado ou contador antes de publicar. Confirme também que a frase "Não vendemos seus dados" e o prazo de guarda descrevem a prática real do Studio.
-- [x] FAQ criado (seção `#faq`, com dados estruturados `FAQPage`). Uma descrição curta por serviço continua opcional.
-- [x] Autorização de uso das fotos das clientes confirmada pela dona. Guarde o registro (mensagem ou termo) e retire a foto se alguém pedir.
-- [x] Conferir o pin do mapa e o horário "terça a sábado, das 7h30 às 19h".
+Métricas de desempenho (preencher após medir no PageSpeed Insights, com a data):
 
-## Créditos
+| Métrica | Mobile | Desktop |
+|---|---|---|
+| Performance | — | — |
+| Acessibilidade | — | — |
+| Boas práticas | — | — |
+| SEO | — | — |
 
-Site criado por Mateus Diniz.
+## Possíveis evoluções
+
+- CI no GitHub Actions para validar HTML e peso das imagens a cada push.
+- Geração automática de WebP e miniaturas.
+- Versões `srcset` das fotos para telas de alta densidade.
+- Testes de regressão visual.
+
+## Autor
+
+Mateus Diniz — [GitHub](https://github.com/mateusdinizz)
