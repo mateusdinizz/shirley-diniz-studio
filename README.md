@@ -112,10 +112,10 @@ Confira o tamanho (`ls -l`) e reduza a qualidade até ficar abaixo de 300 KB. Gu
 - [ ] Depois de publicar, testar a prévia do link no WhatsApp e validar o JSON-LD no Teste de Resultados Rich do Google.
 - [ ] Rodar PageSpeed Insights e testar em celulares e tablets reais.
 - [x] Reescrever os textos genéricos de "Nosso trabalho", "Nosso espaço" e da legenda da Shirley com fatos reais, e comprovar a frase "mais de 20 anos".
-- [ ] Preencher os campos em destaque entre colchetes de `privacidade.html` (razão social ou nome, CNPJ ou CPF) e pedir a revisão de um advogado ou contador antes de publicar. Confirme também que a frase "Não vendemos seus dados" e o prazo de guarda descrevem a prática real do Studio.
+- [x] Preencher os campos em destaque entre colchetes de `privacidade.html` (razão social ou nome, CNPJ ou CPF) e pedir a revisão de um advogado ou contador antes de publicar. Confirme também que a frase "Não vendemos seus dados" e o prazo de guarda descrevem a prática real do Studio.
 - [x] FAQ criado (seção `#faq`, com dados estruturados `FAQPage`). Uma descrição curta por serviço continua opcional.
 - [x] Autorização de uso das fotos das clientes confirmada pela dona. Guarde o registro (mensagem ou termo) e retire a foto se alguém pedir.
-- [ ] Conferir o pin do mapa e o horário "terça a sábado, das 7h30 às 19h".
+- [x] Conferir o pin do mapa e o horário "terça a sábado, das 7h30 às 19h".
 
 ## Créditos
 
