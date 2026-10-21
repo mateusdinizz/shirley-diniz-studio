@@ -126,10 +126,10 @@ Métricas de desempenho (preencher após medir no PageSpeed Insights, com a data
 
 | Métrica | Mobile | Desktop |
 |---|---|---|
-| Performance | — | — |
-| Acessibilidade | — | — |
-| Boas práticas | — | — |
-| SEO | — | — |
+| Performance | 94 | 100 |
+| Acessibilidade | 96 | 96 |
+| Boas práticas | 100 | 100 |
+| SEO | 100 | 100 |
 
 ## Possíveis evoluções
 
