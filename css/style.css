@@ -381,3 +381,25 @@ main:focus { outline: none; }
 .shirley-col { position: sticky; top: 108px; }
 .shirley-col .ig-viewport { aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; }
 @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } .shirley-col { position: static; order: -1; } .shirley-col .ig-viewport { border-radius: 22px; } }
+
+/* ===== Menu hambúrguer (celular). O botão é criado pelo JS; sem JS o menu continua aberto como antes ===== */
+.nav-toggle { display: none; }
+@media (max-width: 760px) {
+  header.js-nav .nav-toggle { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(26,26,26,.28); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+  .nav-bars, .nav-bars::before, .nav-bars::after { display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; transition: transform .25s ease, background-color .2s ease; }
+  .nav-bars { position: relative; }
+  .nav-bars::before, .nav-bars::after { content: ""; position: absolute; left: 0; }
+  .nav-bars::before { top: -6px; }
+  .nav-bars::after { top: 6px; }
+  header.nav-open .nav-bars { background: transparent; }
+  header.nav-open .nav-bars::before { transform: translateY(6px) rotate(45deg); }
+  header.nav-open .nav-bars::after { transform: translateY(-6px) rotate(-45deg); }
+  header.js-nav .btn-pill { margin-left: auto; }
+  header.js-nav nav { display: none; flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 0; padding: 6px 20px; border-radius: 18px; background: var(--panel); font-size: 1rem; }
+  header.js-nav.nav-open nav { display: flex; }
+  header.js-nav nav a { display: flex; align-items: center; min-height: 48px; padding: 8px 0; border-bottom: 1px solid rgba(26,26,26,.12); }
+  header.js-nav nav a:last-child { border-bottom: 0; }
+  header.js-nav nav a::after { display: none; }
+  header.js-nav nav a[aria-current="true"] { color: var(--ink); font-weight: 600; }
+}
+@media (prefers-reduced-motion: reduce) { .nav-bars, .nav-bars::before, .nav-bars::after { transition: none; } }

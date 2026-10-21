@@ -86,3 +86,28 @@
     });
   });
 })();
+
+/* ===== Menu hambúrguer no celular ===== */
+(function () {
+  var header = document.querySelector('header'); var nav = header && header.querySelector('nav');
+  if (!header || !nav) return;
+  var pill = header.querySelector('.btn-pill');
+  var btn = document.createElement('button');
+  btn.type = 'button'; btn.className = 'nav-toggle';
+  btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-label', 'Abrir menu');
+  btn.innerHTML = '<span class="nav-bars" aria-hidden="true"></span>';
+  if (!nav.id) nav.id = 'menu-principal';
+  btn.setAttribute('aria-controls', nav.id);
+  header.insertBefore(btn, pill ? pill.nextSibling : nav);
+  header.classList.add('js-nav');
+  function set(open) {
+    header.classList.toggle('nav-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  }
+  btn.addEventListener('click', function () { set(!header.classList.contains('nav-open')); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && header.classList.contains('nav-open')) { set(false); btn.focus(); } });
+  document.addEventListener('click', function (e) { if (header.classList.contains('nav-open') && !header.contains(e.target)) set(false); });
+  matchMedia('(min-width: 761px)').addEventListener('change', function (m) { if (m.matches) set(false); });
+})();
