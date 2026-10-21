@@ -97,7 +97,7 @@ Confira o tamanho (`ls -l`) e reduza a qualidade até ficar abaixo de 300 KB. Gu
 - `h1` (oculto visualmente), `title`, `description`, canonical, Open Graph e Twitter Card.
 - Dados estruturados `HairSalon` (JSON-LD), `robots.txt` e `sitemap.xml`.
 - Link "Pular para o conteúdo", foco visível com contraste, botão de pausar os carrosséis, alvos de toque de 44 px em telas de toque e aviso de "abre em nova aba".
-- Nenhuma requisição a terceiros no carregamento: fontes locais e mapa do Google carregado só ao clique.
+- Nenhuma requisição a terceiros no carregamento: fontes locais e mapa do Google carrega qunado a seção se aproxima da tela.
 
 ## Publicar no GitHub Pages
 
