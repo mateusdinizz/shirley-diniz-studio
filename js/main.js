@@ -31,16 +31,22 @@
   });
 })();
 
-/* ===== Mapa carregado só ao clique ===== */
+/* ===== Mapa carregado automaticamente quando a seção se aproxima da tela ===== */
 (function () {
   var box = document.querySelector('.map[data-map-src]'); if (!box) return;
-  var btn = box.querySelector('.map-load'); if (!btn) return;
-  btn.addEventListener('click', function () {
+  var done = false;
+  function load() {
+    if (done) return; done = true;
     var f = document.createElement('iframe');
     f.title = box.getAttribute('data-map-title'); f.src = box.getAttribute('data-map-src');
-    f.loading = 'lazy'; f.referrerPolicy = 'no-referrer-when-downgrade'; f.allowFullscreen = true;
+    f.referrerPolicy = 'no-referrer-when-downgrade'; f.allowFullscreen = true;
     box.replaceChildren(f);
-  });
+  }
+  if (!('IntersectionObserver' in window)) { load(); return; }
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+  }, { rootMargin: '400px 0px' });
+  io.observe(box);
 })();
 
 /* ===== Movimento: entrada ao rolar, menu ativo e botão flutuante ===== */
